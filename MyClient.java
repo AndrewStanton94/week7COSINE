@@ -1,4 +1,5 @@
 import java.rmi.registry.*;
+import java.io.*;
 
 public class MyClient{
 	public static void main(String args []) throws Exception{
@@ -7,6 +8,13 @@ public class MyClient{
 		MyRemoteInterface handle =
 			(MyRemoteInterface) reg.lookup("myrmiserver");	// Return object linked to key. Cast to MyRemoteInterface.
 																// https://docs.oracle.com/javase/7/docs/api/java/rmi/registry/LocateRegistry.html#getRegistry(java.lang.String,%20int)
-		handle.printMessage("Wassup!");		// Execute remote method.
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+			String message = in.readLine();
+			handle.printMessage(message);		// Execute remote method.
+		}
+		catch (Exception ex){
+			System.err.println(ex);
+		}
 	}
 }
