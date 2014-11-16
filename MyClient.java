@@ -10,8 +10,13 @@ public class MyClient{
 																// https://docs.oracle.com/javase/7/docs/api/java/rmi/registry/LocateRegistry.html#getRegistry(java.lang.String,%20int)
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-			String message = in.readLine();
-			handle.printMessage(message);		// Execute remote method.
+			boolean more = true;
+			while (more){
+				String message = in.readLine();
+				handle.printMessage(message);		// Execute remote method.
+				if (message.equals("END"))
+					more = false;
+			}
 		}
 		catch (Exception ex){
 			System.err.println(ex);
