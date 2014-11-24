@@ -54,7 +54,7 @@ public class Parle extends UnicastRemoteObject implements MyRemoteInterface {
 	private static Registry locateRegistry() throws Exception{
 		System.out.println("Enter the IP address of the sever: ");
 		String ip = in.readLine();
-		System.out.println("Enter port: ");
+		System.out.println("Enter port of the server: ");
 		int port = Integer.parseInt(in.readLine());
 		return LocateRegistry.getRegistry(ip, port);
 			// Uses socket: IP + port to retreive remote object reference from server
@@ -63,6 +63,7 @@ public class Parle extends UnicastRemoteObject implements MyRemoteInterface {
 
 	private static void talk(){
 		try {
+			System.out.println("##Connection Established: Partner Listening.");
 			boolean more = true;
 			while (more){
 				String message = in.readLine();
